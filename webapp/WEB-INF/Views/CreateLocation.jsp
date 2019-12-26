@@ -15,7 +15,7 @@
 				  Rural<input type="radio" name="type" value="RURAL"/><br>
 			<input type="submit" value="save"/><br>
 		</form>
-		${message}
+		${message}<br>
 		<a href="view-locations">Display All Locations</a>
 	</body>
 </html>

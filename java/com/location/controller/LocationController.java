@@ -2,6 +2,8 @@ package com.location.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.location.entities.Location;
+import com.location.repository.LocationRepository;
 import com.location.service.LocationService;
 import com.location.util.EmailUtil;
+import com.location.util.ReportUtil;
 
 @Controller
 public class LocationController {
@@ -21,6 +25,15 @@ public class LocationController {
 
 	@Autowired
 	private EmailUtil emailUtility;
+
+	@Autowired
+	private LocationRepository locationRepository;
+
+	@Autowired
+	private ReportUtil reportUtil;
+
+	@Autowired
+	private ServletContext sc;
 
 	@RequestMapping("/show-create-loaction")
 	public String showCreate() {
@@ -32,8 +45,9 @@ public class LocationController {
 		Location locationSaved = locationService.saveLocation(location);
 		String message = "Location saved with id " + locationSaved.getId();
 		modelMap.addAttribute("message", message);
-		//To send mail from application
-		//emailUtility.sendEmail("to some email address", "Test Mail", "Testing Mail Body");
+		// To send mail from application
+		// emailUtility.sendEmail("to some email address", "Test Mail", "Testing Mail
+		// Body");
 		return "CreateLocation";
 	}
 
@@ -67,6 +81,14 @@ public class LocationController {
 		List<Location> locations = locationService.getAllLocations();
 		modelMap.addAttribute("locations", locations);
 		return "viewAllLocations";
+	}
+
+	@RequestMapping("/generate-report")
+	public String generateReport(@ModelAttribute("location") Location location, ModelMap modelMap) {
+		String path = sc.getRealPath("/");
+		List<Object[]> data = locationRepository.findByTypeCount();
+		reportUtil.generatePieChart(path, data);
+		return "report";
 	}
 
 }

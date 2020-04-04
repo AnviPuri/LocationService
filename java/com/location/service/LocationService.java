@@ -10,7 +10,7 @@ public interface LocationService {
 	
 	Location updateLocation(Location location);
 	
-	void deleteLocation(Location location);
+	void deleteLocation(int id);
 	
 	Location getLocationById(int id);
 	

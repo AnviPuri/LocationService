@@ -10,9 +10,18 @@ public class Location {
 
 	@Id
 	private int id;
-	private String code;
-	private String city;
+	private String name;
+	private String description;
 	private String type;
+	private String postalCode;
+	private String city;
+	private String regionName;
+	private String regionCode;
+	private String countryName;
+	private String countryCode;
+	private String latitude;
+	private String longitude;
+	private Boolean active;
 
 	public int getId() {
 		return id;
@@ -22,12 +31,20 @@ public class Location {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
+	public String getName() {
+		return name;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getType() {
@@ -38,6 +55,14 @@ public class Location {
 		this.type = type;
 	}
 
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
 	public String getCity() {
 		return city;
 	}
@@ -46,9 +71,60 @@ public class Location {
 		this.city = city;
 	}
 
-	@Override
-	public String toString() {
-		return "Location [id=" + id + ", code=" + code + ", city=" + city + ", type=" + type + "]";
+	public String getRegionName() {
+		return regionName;
+	}
+
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
+	}
+
+	public String getRegionCode() {
+		return regionCode;
+	}
+
+	public void setRegionCode(String regionCode) {
+		this.regionCode = regionCode;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 }

@@ -17,17 +17,24 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location saveLocation(Location location) {
+
+		location.setActive(true);
 		return locationRepository.save(location);
 	}
 
 	@Override
 	public Location updateLocation(Location location) {
+
 		return locationRepository.save(location);
 	}
 
 	@Override
-	public void deleteLocation(Location location) {
-		locationRepository.delete(location);
+	public void deleteLocation(int id) {
+
+		Location location = new Location();
+		location.setId(id);
+		location.setActive(false);
+		locationRepository.save(location);
 	}
 
 	@Override
